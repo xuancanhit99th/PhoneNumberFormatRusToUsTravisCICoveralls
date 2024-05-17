@@ -53,13 +53,13 @@ public class MainTest {
         assertEquals(expected, actual);
     }
 
-//    @Test
-//    public void testFormatPhoneNumberWithCountryCode() {
-//        String input = "+44 123 456 78 90";
-//        String expected = "+4 (412) 345-67-89";
-//        String actual = Main.formatPhoneNumber(input);
-//        assertEquals(expected, actual);
-//    }
+    @Test
+    public void testFormatPhoneNumberWithCountryCode() {
+        String input = "+44 123 456 78 90";
+        String expected = "+44 (123) 456-78-90";
+        String actual = Main.formatPhoneNumber(input);
+        assertEquals(expected, actual);
+    }
 
     @Test
     public void testFormatPhoneNumberWithShortNumber() {

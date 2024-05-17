@@ -40,11 +40,15 @@ public class Main {
     public static String formatPhoneNumber(String phone) {
         // Удаляем все кроме цифр
         String digits = phone.replaceAll("\\D", "");
-        // Предполагаем, что код страны и первые три цифры номера могут быть разделены пробелом или дефисом, а также могут быть заключены в скобки
-        if (digits.length() == 11) {
-            return "+" + digits.substring(0, 1) + " (" + digits.substring(1, 4) + ") " + digits.substring(4, 7) + "-" + digits.substring(7, 9) + "-" + digits.substring(9);
-        } else if (digits.length() == 10) {
+        if (digits.length() == 10) {
+            // Если длина цифр равна 10, предполагаем код страны +1
             return "+1 (" + digits.substring(0, 3) + ") " + digits.substring(3, 6) + "-" + digits.substring(6, 8) + "-" + digits.substring(8);
+        } else if (digits.length() > 10) {
+            // Если длина цифр больше 10, предполагаем наличие кода страны
+            String countryCode = digits.substring(0, digits.length() - 10);
+            String areaCode = digits.substring(digits.length() - 10, digits.length() - 7);
+            String localNumber = digits.substring(digits.length() - 7);
+            return "+" + countryCode + " (" + areaCode + ") " + localNumber.substring(0, 3) + "-" + localNumber.substring(3, 5) + "-" + localNumber.substring(5);
         } else {
             return "Invalid number";
         }
