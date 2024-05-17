@@ -12,4 +12,12 @@ public class MainTest {
         String actual = Main.formatPhoneNumber(input);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testFormatPhoneNumberWithDifferentInput() {
+        String input = "+7 123 456-78-90";
+        String expected = "+1 (123) 456-78-90";
+        String actual = Main.formatPhoneNumber(input);
+        assertEquals(expected, actual);
+    }
 }
