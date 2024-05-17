@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.12.2'
 }
 
 group = 'org.example'
@@ -17,3 +19,23 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+jacoco {
+    toolVersion = "0.8.12"
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+        // html.enabled = true
+    }
+}
+
+coveralls {
+    jacocoReportPath = "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+}
+
+
+check.dependsOn jacocoTestReport
