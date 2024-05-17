@@ -28,8 +28,7 @@ jacocoTestReport {
     dependsOn test
     reports {
         xml.required = true
-        xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
-        // html.enabled = true
+        html.required = true
     }
 }
 
